@@ -1,14 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-contract Counter {
-    uint256 public number;
+import "lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 
-    function setNumber(uint256 newNumber) public {
-        number = newNumber;
-    }
+contract METoken is ERC20 {
+    address payable public  owner;
 
-    function increment() public {
-        number++;
+    constructor() ERC20("MASTERING ETHEREUM","MET"){
+     owner = payable(msg.sender);
+     _mint(owner, 70000000 * (10**decimals()));
     }
 }
